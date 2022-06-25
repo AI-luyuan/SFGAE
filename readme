@@ -1,11 +1,11 @@
 # SFGAE
 
 ## Introduction
-SFGAE is a self-feature-based graph autoencoder model for miRNA-disease associations prediction. The key novelty of SFGAE is to construct miRNA-self embeddings and disease-self embeddings, and let them be independent of graph interactions between two types of nodes.
+SFGAE is a self-feature-based graph autoencoder model for predicting miRNA-disease associations. The novelty of SFGAE is to construct miRNA-self embeddings and disease-self embeddings, and let them be independent of graph interactions between two types of nodes. SFGAE can effectively overcome the over-smoothing issue of GNN-based models.
 
 
 ## Environment Requirement
-The code has been tested running under Python 3.7.5. The required packages are as follows:
+The code has been tested under Python 3.7.5. The required packages are:
 - dgl == 0.4.3
 - mxnet == 1.6.0.post0
 - numpy == 1.20.3
@@ -17,6 +17,7 @@ The code has been tested running under Python 3.7.5. The required packages are a
 ## Example to Run the Codes
 
 ```python mainauto.py```
+
 
 ## Dataset
 We provide two processed datasets based on HMDD v2.0 and HMDD v3.2.  
