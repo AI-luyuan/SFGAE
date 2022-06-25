@@ -25,8 +25,19 @@ The HMDD v2.0 dataset contains 495 miRNAs and 383 diseases, with 5430 associatio
 The HMDD v3.2 dataset contains 11930 associations between the miRNA and disease nodes in HMDD v2.0 dataset.
 The files corresponding to the two types of associations are: all_mirna_disease_pairs.csv and all_mirna_disease_pairs_3.csv.
 
+## Data description
+
+all_mirna_disease_pairs.csv: miRNA-disease associations of HMDD v2.0 
+all_mirna_disease_pairs_3.csv: miRNA-disease associations of HMDD v3.2 
+D_GSM.txt: Gaussian interaction profile kernel similarity
+D_SSM1.txt: Disease semantic similarity
+D_SSM2.txt:Disease semantic similarity
+M_FSM.txt: miRNA functional similarity
+M_GSM.txt: Gaussian interaction profile kernel similarity
+
+
 ## Weights of the trained SFGAE
-We share the tweights of the trained SFGAE. The weight is the result of the highest auc selected in a 5-fold cross validation.
+We share the weights of the trained SFGAE. The weights are the result of 5-fold cross validation.
 
 
 ## Survival analysis
