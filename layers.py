@@ -6,7 +6,7 @@ import dgl
 import dgl.function as FN
 import numpy as np
 
-
+### gnn layer of SFGAE
 class GraphSageLayer(nn.Block):
     def __init__(self, feature_size, G, disease_nodes, mirna_nodes, dropout, slope, ctx):
         super(GraphSageLayer, self).__init__()
@@ -39,7 +39,7 @@ class GraphSageLayer(nn.Block):
         G.apply_nodes(self.disease_update, self.disease_nodes)
         G.apply_nodes(self.miran_update, self.mirna_nodes)
 
-
+### gnn layer of SFGAE 
 class GraphSageLayer0(nn.Block):
     def __init__(self, feature_size, G, disease_nodes, mirna_nodes, dropout, slope, ctx):
         super(GraphSageLayer0, self).__init__()
@@ -75,7 +75,7 @@ class GraphSageLayer0(nn.Block):
         G.apply_nodes(self.miran_update, self.mirna_nodes)
 
 
-
+### hidden embedding update
 class NodeUpdate0(nn.Block):
     def __init__(self, feature_size, dropout, slope):
         super(NodeUpdate0, self).__init__()
