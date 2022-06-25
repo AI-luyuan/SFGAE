@@ -13,13 +13,14 @@ from sklearn import metrics
 from utilsauto import build_graph, sample, load_data
 from model import SFGAE, GraphEncoder, BilinearDecoder, BilinearDecoder_FM
 
-
+#### Model training function ####
 def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope, lr, wd, random_seed, ctx):
     dgl.load_backend('mxnet')
     random.seed(random_seed)
     np.random.seed(random_seed)
     mx.random.seed(random_seed)
 
+    #### Build bipartite graph ####
     g, disease_ids_invmap, mirna_ids_invmap = build_graph(directory, random_seed=random_seed, ctx=ctx)
     samples = sample(directory, random_seed=random_seed)
     ID, IM, D_rw = load_data(directory)
@@ -29,6 +30,7 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
     sample_disease_vertices = [disease_ids_invmap[id_] for id_ in samples[:, 1]]
     sample_mirna_vertices = [mirna_ids_invmap[id_] + ID.shape[0] for id_ in samples[:, 0]]
 
+    #### k-fold cross validation  ####
     kf = KFold(n_splits=5, shuffle=True, random_state=random_seed)
     train_index = []
     test_index = []
@@ -69,10 +71,12 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
         g_train = g.edge_subgraph(train_eid, preserve_nodes=True)
         g_train.copy_from_parent()
 
-        # get the training set
+        #### get the training set  ####
         rating_train = g_train.edata['rating']
         src_train, dst_train = g_train.all_edges()
-        # get the testing edge set
+        
+        
+        #### get the testing edge set ####
         test_eid = g.filter_edges(lambda edges: edges.data['test']).astype('int64')
         src_test, dst_test = g.find_edges(test_eid)
         rating_test = g.edges[test_eid].data['rating']
@@ -81,15 +85,17 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
         dst_train = dst_train.copyto(ctx)
         dst_test = dst_test.copyto(ctx)
 
-
+        #### SFGAE model  ####
         model = SFGAE(GraphEncoder(embedding_size=embedding_size, n_layers=layers, G=g_train, aggregator=aggregator,
                                     dropout=dropout, slope=slope, ctx=ctx),
                        BilinearDecoder(feature_size=embedding_size))
 
-      
+        #### model initialization  ####
         model.collect_params().initialize(init=mx.init.Xavier(rnd_type='uniform', magnitude=math.sqrt(2)), ctx=ctx)#factor_type='out', gaussian, uniform
         cross_entropy = gloss.SigmoidBinaryCrossEntropyLoss(from_sigmoid=True)
         trainer = gluon.Trainer(model.collect_params(), 'adamax', {'learning_rate': lr, 'wd': wd}) #adam,sgd,adamax,adagrad
+
+        #### Iterative training ####
 
         for epoch in range(epochs):
             start = time.time()
@@ -104,6 +110,8 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
             score_val = model.decoder(h_val[src_test], h_val[dst_test])
             # score_val = model.decoder_FM(h_val[src_test], h_val[dst_test])
             loss_val = cross_entropy(score_val, rating_test).mean()
+
+            #### calculate evaluation metrics ###
 
             train_auc = metrics.roc_auc_score(np.squeeze(rating_train.asnumpy()), np.squeeze(score_train.asnumpy()))
             val_auc = metrics.roc_auc_score(np.squeeze(rating_test.asnumpy()), np.squeeze(score_val.asnumpy()))
@@ -145,4 +153,4 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
 
 
 
-    return auc_result, acc_result, pre_result, recall_result, f1_result, fprs, tprs,aupr_result
+    return auc_result, acc_result, pre_result, recall_result, f1_result, fprs, tprs,
