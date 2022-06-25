@@ -4,11 +4,11 @@ import mxnet as mx
 from mxnet import ndarray as nd
 import dgl
 
-
+### load disease and miRNA similarity ####
 def load_data(directory):
-    D_SSM1 = np.loadtxt(directory + '/D_SSM1.txt')
-    D_SSM2 = np.loadtxt(directory + '/D_SSM2.txt')
-    D_GSM = np.loadtxt(directory + '/D_GSM.txt')
+    D_SSM1 = np.loadtxt(directory + '/D_SSM1.txt')  ###Disease semantic similarity
+    D_SSM2 = np.loadtxt(directory + '/D_SSM2.txt')  
+    D_GSM = np.loadtxt(directory + '/D_GSM.txt')     ###Gaussian interaction profile kernel similarity
 
     D_rw = np.loadtxt(directory + '/d_emb.txt')
 
