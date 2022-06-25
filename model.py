@@ -6,7 +6,7 @@ import numpy as np
 
 from layers import GraphSageLayer,GraphSageLayer0
 
-
+####  SFGAE model class ####
 class SFGAE(nn.Block):
     def __init__(self, encoder,decoder):
     # def __init__(self, encoder,decoder_FM):
@@ -18,10 +18,10 @@ class SFGAE(nn.Block):
         # self.decoder_FM = decoder_FM
 
     def forward(self, G, diseases, mirnas):
-        h = self.encoder(G)
-        h_diseases = h[diseases]
-        h_mirnas = h[mirnas]
-        out2 = self.decoder(h_diseases, h_mirnas)
+        h = self.encoder(G)   ####  gnn encoder module  ####
+        h_diseases = h[diseases]    ####  disease node  feature  ####
+        h_mirnas = h[mirnas]        ####  miRNA node  feature  ####
+        out2 = self.decoder(h_diseases, h_mirnas)   ####  sfgae decoder module  ####
         return out2
 
 
@@ -51,7 +51,7 @@ class GraphEncoder(nn.Block):
         self.mirna_emb = MirnaEmbedding(embedding_size, dropout)
 
     def forward(self, G):
-        # Generate embedding on disease nodes and mirna nodes
+        #### Generate embedding on disease nodes and mirna nodes ####
         assert G.number_of_nodes() == self.G.number_of_nodes()
 
         G.apply_nodes(lambda nodes: {'h': self.disease_emb(nodes.data)}, self.disease_nodes)
@@ -79,10 +79,9 @@ class DiseaseEmbedding(nn.Block):
             # seq.add(nn.Activation('relu'))
             seq.add(nn.Dropout(dropout))
         self.proj_disease = seq
-
-
-
+        
     def forward(self, ndata):
+        #### Generate h0 of disease nodes####
         extra_repr = self.proj_disease(ndata['d_features'])
 
         return extra_repr
@@ -99,6 +98,7 @@ class MirnaEmbedding(nn.Block):
         self.proj_mirna = seqm
 
     def forward(self, ndata):
+        #### Generate h0 of miRNA nodes####
         extra_repr = self.proj_mirna(ndata['m_features'])
         return extra_repr
 
