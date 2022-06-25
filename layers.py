@@ -1,3 +1,5 @@
+### In this file, we construct GNN layers utilized in SFGAE model.
+
 import math
 import mxnet as mx
 from mxnet import ndarray as nd

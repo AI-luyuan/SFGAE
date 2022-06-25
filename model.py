@@ -1,3 +1,5 @@
+### In this file, we construct SFGAE model, which consists of encoder step and decoder step.
+
 import mxnet as mx
 from mxnet import ndarray as nd
 from mxnet.gluon import nn

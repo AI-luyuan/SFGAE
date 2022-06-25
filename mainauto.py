@@ -1,3 +1,5 @@
+### This is the main file for testing the performance of SFGAE.
+
 import matplotlib.pyplot as plt
 import mxnet as mx
 import numpy as np

@@ -1,3 +1,5 @@
+### In this file, we define the function for training the SFGAE model.
+
 import time
 import random
 import numpy as np
@@ -14,6 +16,9 @@ from utilsauto import build_graph, sample, load_data
 from model import SFGAE, GraphEncoder, BilinearDecoder, BilinearDecoder_FM
 
 #### Model training function ####
+### The inputs are various hyperparameters including the embedding size, the number of layers, the dropout rate, the slope of LeaklyRelu etc.
+### The outputs are various metrics including AUC, F1, Recall etc.
+
 def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope, lr, wd, random_seed, ctx):
     dgl.load_backend('mxnet')
     random.seed(random_seed)

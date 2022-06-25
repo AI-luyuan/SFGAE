@@ -1,8 +1,11 @@
+### In this file, we load data, construct samples, and construct bipartite graph
+
 import numpy as np
 import pandas as pd
 import mxnet as mx
 from mxnet import ndarray as nd
 import dgl
+
 
 ### load disease and miRNA similarity ####
 def load_data(directory):
@@ -38,7 +41,7 @@ def load_data(directory):
     # ID = np.hstack((ID,D_rw))
     return ID, IM,D_rw
 
-
+### construct samples
 def sample(directory, random_seed):
     all_associations = pd.read_csv(directory + '/all_mirna_disease_pairs.csv', names=['miRNA', 'disease', 'label'])
     known_associations = all_associations.loc[all_associations['label'] == 1]
@@ -50,7 +53,7 @@ def sample(directory, random_seed):
 
     return sample_df.values
 
-
+### construct bipartite graph
 def build_graph(directory, random_seed, ctx):
     # dgl.load_backend('mxnet')
     ID, IM, D_rw = load_data(directory)
