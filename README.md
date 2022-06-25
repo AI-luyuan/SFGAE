@@ -25,18 +25,22 @@ The HMDD v2.0 dataset contains 495 miRNAs and 383 diseases, with 5430 associatio
 The HMDD v3.2 dataset contains 11930 associations between the miRNA and disease nodes in HMDD v2.0 dataset. 
 We also provide datasets for carrying out case studies on three diseases, *colon neoplasms*, *esophageal neoplasms*, and *kidney neoplasms*.
 
+Files descriptions:
 
-all_mirna_disease_pairs.csv: miRNA-disease associations of HMDD v2.0 
-all_mirna_disease_pairs_3.csv: miRNA-disease associations of HMDD v3.2 
-D_GSM.txt: Gaussian interaction profile kernel similarity
-D_SSM1.txt: Disease semantic similarity
-D_SSM2.txt:Disease semantic similarity
-M_FSM.txt: miRNA functional similarity
-M_GSM.txt: Gaussian interaction profile kernel similarity
+all_mirna_disease_pairs.csv: miRNA-disease associations of HMDD v2.0; \
+all_mirna_disease_pairs_3.csv: miRNA-disease associations of HMDD v3.2; \
+all_mirna_disease_pairs_Colon: miRNA-disease associations of colon neoplasms;\
+all_mirna_disease_pairs_Esophageal: miRNA-disease associations of esophageal neoplasms;\
+all_mirna_disease_pairs_Kidney: miRNA-disease associations of kidney neoplasms;\
+D_GSM.txt: Gaussian interaction profile kernel similarity;\
+D_SSM1.txt: disease semantic similarity;\
+D_SSM2.txt: disease semantic similarity;\
+M_FSM.txt: miRNA functional similarity;\
+M_GSM.txt: Gaussian interaction profile kernel similarity.
 
 
-## Weights of the trained SFGAE
-We share the weights of the trained SFGAE. The weights are the result of 5-fold cross validation.
+### weight
+We share the weights of the trained SFGAE on the datasets HMDD v2.0 and HMDD v3.2. For each dataset, we provide 5 weights corresponding to 5-fold cross validation. The AUC values are reported.
 
 
 ## Survival analysis
