@@ -25,7 +25,7 @@ The HMDD v2.0 dataset contains 495 miRNAs and 383 diseases, with 5430 associatio
 The HMDD v3.2 dataset contains 11930 associations between the miRNA and disease nodes in HMDD v2.0 dataset. 
 We also provide datasets for carrying out case studies on three diseases, *colon neoplasms*, *esophageal neoplasms*, and *kidney neoplasms*.
 
-Files descriptions:
+File descriptions:
 
 all_mirna_disease_pairs.csv: miRNA-disease associations of HMDD v2.0; \
 all_mirna_disease_pairs_3.csv: miRNA-disease associations of HMDD v3.2; \
