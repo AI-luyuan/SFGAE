@@ -28,7 +28,7 @@ miR_matrix<-as.matrix(miR)
 ```
 
 
-Input miRNA to be analyzed and integrate required files.
+Input miRNAs for the analysis and integrate required files.
 ```
 samplesTP <- TCGAquery_SampleTypes(barcode = colnames(miR_matrix),typesample = c("TP"))
 gene_exp <- miR_matrix[c("hsa-mir-155"),samplesTP]#
