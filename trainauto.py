@@ -28,7 +28,7 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
     #### Build bipartite graph ####
     g, disease_ids_invmap, mirna_ids_invmap = build_graph(directory, random_seed=random_seed, ctx=ctx)
     samples = sample(directory, random_seed=random_seed)
-    ID, IM, D_rw = load_data(directory)
+    ID, IM = load_data(directory)
 
 
     samples_df = pd.DataFrame(samples, columns=['miRNA', 'disease', 'label'])
