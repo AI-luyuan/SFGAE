@@ -40,7 +40,7 @@ M_GSM.txt: Gaussian interaction profile kernel similarity.
 
 
 ### weight
-We share the weights of the trained SFGAE on the datasets HMDD v2.0 and HMDD v3.2. For each dataset, we provide 5 weights corresponding to 5-fold cross validation. The AUC values are reported.
+We share the weights of the trained SFGAE on the datasets HMDD v2.0 and HMDD v3.2. For each dataset, we provide 5 weights corresponding to 5-fold cross-validation. The AUC values are reported.
 
 ### survival analysis
 We utilize TCGA-KIRC dataset, and perform a survival analysis on the top 40 miRNAs predicted by SFGAE for kidney neoplasms. 
