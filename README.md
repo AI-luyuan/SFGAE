@@ -29,9 +29,9 @@ Files descriptions:
 
 all_mirna_disease_pairs.csv: miRNA-disease associations of HMDD v2.0; \
 all_mirna_disease_pairs_3.csv: miRNA-disease associations of HMDD v3.2; \
-all_mirna_disease_pairs_Colon: miRNA-disease associations of colon neoplasms;\
-all_mirna_disease_pairs_Esophageal: miRNA-disease associations of esophageal neoplasms;\
-all_mirna_disease_pairs_Kidney: miRNA-disease associations of kidney neoplasms;\
+all_mirna_disease_pairs_Colon: miRNA-disease associations used in case study of colon neoplasms;\
+all_mirna_disease_pairs_Esophageal: miRNA-disease associations used in case study of esophageal neoplasms;\
+all_mirna_disease_pairs_Kidney: miRNA-disease associations used in case study of kidney neoplasms;\
 D_GSM.txt: Gaussian interaction profile kernel similarity;\
 D_SSM1.txt: disease semantic similarity;\
 D_SSM2.txt: disease semantic similarity;\
