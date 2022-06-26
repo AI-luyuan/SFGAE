@@ -9,7 +9,7 @@ library(survival)
 library(survminer)
 library(maftools)
 ```
-Download miRNA expression data and clinical data. (We utilize TCGA-KIRC dataset.)
+Download miRNA expression data and clinical data. (we utilize TCGA-KIRC dataset.)
 ```
 TCGAbiolinks:::getProjectSummary("TCGA-KIRC") 
 clinical <- GDCquery_clinic(project = "TCGA-KIRC", type = "clinical")
