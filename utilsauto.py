@@ -13,7 +13,6 @@ def load_data(directory):
     D_SSM2 = np.loadtxt(directory + '/D_SSM2.txt')  
     D_GSM = np.loadtxt(directory + '/D_GSM.txt')     ###Gaussian interaction profile kernel similarity
 
-    D_rw = np.loadtxt(directory + '/d_emb.txt')
 
 
     M_FSM = np.loadtxt(directory + '/M_FSM.txt')
@@ -38,8 +37,8 @@ def load_data(directory):
                 IM[i][j] = M_GSM[i][j]
             else:
                 IM[i][j] = M_FSM[i][j]
-    # ID = np.hstack((ID,D_rw))
-    return ID, IM,D_rw
+    
+    return ID, IM
 
 ### construct samples
 def sample(directory, random_seed):
@@ -56,7 +55,7 @@ def sample(directory, random_seed):
 ### construct bipartite graph
 def build_graph(directory, random_seed, ctx):
     # dgl.load_backend('mxnet')
-    ID, IM, D_rw = load_data(directory)
+    ID, IM = load_data(directory)
     samples = sample(directory, random_seed)
 
     # print('Building graph ...')
@@ -70,10 +69,6 @@ def build_graph(directory, random_seed, ctx):
     d_data = nd.zeros(shape=(g.number_of_nodes(), ID.shape[1]), dtype='float32', ctx=ctx)
     d_data[: ID.shape[0], :] = nd.from_numpy(ID)
     g.ndata['d_features'] = d_data
-
-    drw_data = nd.zeros(shape=(g.number_of_nodes(), D_rw.shape[1]), dtype='float32', ctx=ctx)
-    drw_data[: ID.shape[0], :] = nd.from_numpy(D_rw)
-    g.ndata['drw_features'] = drw_data
 
     # print('Adding miRNA features ...')
     m_data = nd.zeros(shape=(g.number_of_nodes(), IM.shape[1]), dtype='float32', ctx=ctx)
