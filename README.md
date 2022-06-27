@@ -22,7 +22,7 @@ The code has been tested under Python 3.7.5. The required packages are:
 ### data
 We provide two processed datasets, HMDD v2.0 and HMDD v3.2. 
 The HMDD v2.0 dataset contains 495 miRNAs and 383 diseases, with 5430 associations between them.
-The HMDD v3.2 dataset contains 11930 associations between the miRNA and disease nodes in HMDD v2.0 dataset. 
+The HMDD v3.2 dataset further complements the associations between the miRNA and disease nodes in v2.0 dataset. 
 We also provide datasets for carrying out case studies on three diseases, *colon neoplasms*, *esophageal neoplasms*, and *kidney neoplasms*.
 
 File descriptions:
