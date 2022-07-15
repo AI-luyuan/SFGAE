@@ -65,8 +65,7 @@ class GraphEncoder(nn.Block):
 
         for layer in self.layers:
             layer(G)
-        print(G.ndata['h'])
-        print(G.ndata['h1'])
+
 
         return nd.concat(G.ndata['h'], G.ndata['h1'], dim=1)
 
