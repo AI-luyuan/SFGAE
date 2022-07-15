@@ -5,8 +5,8 @@ SFGAE is a self-feature-based graph autoencoder model for predicting miRNA-disea
 
 ## Environment Requirement
 The code has been tested under Python 3.7.5. The required packages are:
-- dgl == 0.4.3
-- mxnet == 1.6.0.post0
+- dgl-cu102 == 0.4.3
+- mxnet-cu102 == 1.6.0.post0
 - numpy == 1.20.3
 - pandas == 1.3.4
 - pytorch == 1.8.0
