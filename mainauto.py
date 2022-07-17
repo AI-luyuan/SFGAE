@@ -22,7 +22,7 @@ if __name__ == '__main__':
                                                 lr=0.001,
                                                 wd=2e-3,
                                                 random_seed=126,  
-                                                ctx=mx.gpu(0))
+                                                ctx=mx.cpu(0)) #GPU version: ctx=mx.gpu(0)
 
   print('seed: %.4f \n' % (126),
         '-AUC mean: %.4f, variance: %.4f \n' % (np.mean(auc), np.std(auc)),
