@@ -1,0 +1,58 @@
+
+##################################################################
+###### NOTE     ##################################################
+##################################################################
+We believe there is a systematic error in the submission system, which does not exposit our response letter properly. The editorial office has not replied to us. We upload our response letter to Github just in case.
+##################################################################
+
+
+We are very grateful to the Editor and three anonymous reviewers for carefully rereading the paper. We have further revised the paper based on the comments. Below we provide our responses point by point. The manuscript changes are highlighted in red.
+
+
+Response to Reviewer 1:
+We greatly appreciate your time spent on the paper. We have further improved the paper based on your suggestions. Here, we respond to your comments.
+
+1. Sorry for not being able to let you run the code smoothly. We uploaded a Kaggle notebook to our Github (see SFGAE.ipynb). We will actively maintain the code on Github. People with implementation problems can open an issue via Github online, and it'd better resolve the problems interactively. 
+
+Based on the provided error report, we can only guess that your issue may be due to some contradiction for running dgl and mxnet simultaneously. It can be brought by the specific version of dgl. Please check that the installed GPU version of dgl 0.4.3 and installed GPU version of mxnet 1.6.0.post0 have correct versions and are both running at the same time. We use dgl-cu102==0.4.3 and mxnet-cu102==1.6.0.post0 in the Ubuntu system. 
+
+On the other hand, you can also use a CPU version of dgl and mxnet. You can simply modify ctx=mx.gpu (0) to ctx=mx.cpu(0). When using the CPU, you can directly use our provided Kaggle notebook. The steps are as follows:
+
+(1) Open the Kaggle home page, https://www.kaggle.com/
+(2) Select the code page, https://www.kaggle.com/code
+(3) Click the button 'New Notebook' to create the new code
+(4) !pip install dgl==0.4.3
+(5) !git clone https://github.com/AI-luyuan/SFGAE.git
+(6) cd SFGAE
+(7) import dgl and select the backend as mxnet
+(8) python mainauto.py
+
+We are happy to resolve any issues of all researchers via Github.
+
+
+2. Indeed. We have varied the threshold and plotted the PR curve as suggested. We observed that SFGAE has the best AUPR value. See Figure 4 for the revision.
+
+
+3. Sorry for bothering you. We have reported the F1-score (and all other metrics) for GAEMDA and SFGAE in Table 3 (and Table 5). So we added a sentence to remind the reader when comparing with other baselines.
+
+
+4. This is a good observation. We only plotted 4 to 8 layers in the R1 version because we had to include more results. In particular, we only showed AUC in the R0 version, while we included AUC and F1-score in the R1 version. Thus, the range of 4 to 8 makes the figure more compact. The deeper model (e.g., 9-11 layers) is implemented on the HMDD v3.2 dataset (see Figure 8). Thus, we believe that this reduction does not lose any important information.
+
+As for the fluctuation of the results, we are also surprised at the beginning. Following GAEMDA, we have set the random seed for mxnet and numpy, etc. However, the fluctuation still appears. Then, we did a google search. It turns out that this phenomenon is related to the specific version of the dgl package. The developer of the package said on GitHub that dgl adopts atomic operation, and there is certain randomness even if the random seed is set in the running process. It seems that this issue cannot be fixed by us. See https://github.com/dmlc/dgl/issues/1471 for more details.
+
+On the other hand, all fluctuations are very slight and can be interpreted by the variations during the training. For example, the results of SFGAE only fluctuate within 0.02% even if we deepen the GNN layers. The shallow GAEMDA models also have similar behavior. However, when we stack more GNN layers (e.g., 8 layers) for GAEMDA, its performance degrades rapidly, and the variance is also very large. Thus, the fluctuation in this setup is more evident than in other setups, while it can still be interpreted by its large standard deviation.
+
+
+
+Response to Reviewer 2:
+We greatly appreciate your time spent on the paper. We have corrected all typos and done careful proofreading. Here, we respond to your comments.
+
+1. We have corrected the reference information you pointed out. We have also carefully checked other citations. We downloaded all citation information via the DOI link. 
+
+2. As you suggested, we have cited and discussed more computational models published in those top journals.
+
+
+
+Response to Reviewer 3:
+Thanks for your careful reviews. 
+
