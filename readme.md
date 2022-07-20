@@ -52,4 +52,5 @@ model.py: construct SFGAE model;\
 trainauto.py: train SFGAE model;\
 mainauto.py: main file.
 
-
+## License
+MIT LICENSE
