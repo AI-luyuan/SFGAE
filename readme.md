@@ -11,7 +11,7 @@ The code has been tested under Python 3.7.5. The required packages are:
 - pytorch == 1.8.0
 - scikit-learn == 1.0.1
 
-We will actively maintain the code on Github. People with implementation problems can open an issue via Github online. We are happy to resolve any issues of all researchers via Github. 
+We will actively maintain the code on Github. People with implementation problems can open an issue via Github online. 
 
 ## Example to Run the Code
 
@@ -55,3 +55,5 @@ mainauto.py: main file.
 
 ## License
 MIT LICENSE
+
+To use the code, please cite the paper entitled ***SFGAE: A self-feature-based graph autoencoder model for miRNA-disease associations prediction***.
