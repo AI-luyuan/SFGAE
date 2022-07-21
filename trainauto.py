@@ -158,4 +158,4 @@ def Train(directory, epochs, aggregator, embedding_size, layers, dropout, slope,
 
 
 
-    return auc_result, acc_result, pre_result, recall_result, f1_result, fprs, tprs,
+    return auc_result, acc_result, pre_result, recall_result, f1_result, fprs, tprs,aupr_result
